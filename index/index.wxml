@@ -1,0 +1,27 @@
+
+<wxs module="util">
+  function formatValue(val){
+    
+    if(val.numerator && val.denominator){
+      if(val.denominator === 1){
+        return val.numerator
+      }else{
+        return val.numerator +"/"+ val.denominator
+      }
+    }else{
+      return ""+val
+    }
+  }
+  module.exports.format = formatValue;
+</wxs>
+<text>获取程序照片exif信息</text>
+<button type="primary" bindtap="bindGetExif">get exif data</button>
+<view>
+  {{exif.XResolution}}:{{exif.YResolution}}
+  -----
+  <!-- <view wx:for="{{exif}}" wx:for-index="key"  wx:for-item="value">
+
+    {{key}} : {{util.format(value)}}
+
+  </view> -->
+</view>
