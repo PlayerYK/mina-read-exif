@@ -17,8 +17,13 @@
 <text>获取程序照片exif信息</text>
 <button type="primary" bindtap="bindGetExif">get exif data</button>
 <view>
-  {{exif.XResolution}}:{{exif.YResolution}}
-  -----
+  <view wx:if="{{exif}}">
+    <view>获取成功</view> 
+    <view>-----</view> 
+    <text space="nbsp" user-select="true">{{printString}}</text>
+  </view>
+
+
   <!-- <view wx:for="{{exif}}" wx:for-index="key"  wx:for-item="value">
 
     {{key}} : {{util.format(value)}}

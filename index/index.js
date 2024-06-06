@@ -11,16 +11,18 @@ Page({
   data: {
     exif:null,
     iptc:null,
+    printString:"",
   },
 
   bindGetExif: function (e) {
     let that = this;
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1,
+      mediaType:['image'],
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: res => {
-        var array = wx.getFileSystemManager().readFileSync(res.tempFilePaths[0]);
+        var array = wx.getFileSystemManager().readFileSync(res.tempFiles[0].tempFilePath);
 
         var r = myexif.handleBinaryFile(array);
 
@@ -28,7 +30,7 @@ Page({
         that.setData({
           exif:r.data,
           iptc:r.iptcdata,
-          test:JSON.stringify(r.data.YResolution)
+          printString:JSON.stringify(r.data,null,2)
         })
       },
       fail: console.error
